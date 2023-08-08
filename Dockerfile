@@ -4,4 +4,4 @@ EXPOSE 80
 
 ENV RESOLUTION 1380x770
 
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf]
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
