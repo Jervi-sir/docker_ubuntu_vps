@@ -1,17 +1,8 @@
-# Use Windows as base image
-FROM mcr.microsoft.com/windows/servercore:ltsc2019
+# Base Image
+FROM microsoft/nanoserver
 
-# Set working directory
-WORKDIR /app 
+# Copy powershell init-script from the host machine (windows) to the docker container.
+COPY init-setup.ps1 c:\\workspace\application\init-setup.ps1
 
-# Copy application files
-COPY . .
-
-# Install dependencies (if any)
-RUN powershell -Command Install-WindowsFeature Web-Server
-
-# Expose port if required
-EXPOSE 80
-
-# Set entrypoint 
-ENTRYPOINT ["powershell.exe", "-Command", "Start-Process C:\\app\\server.exe"]
+# Run the Powershell script in the Docker Container
+CMD ["powershell.exe", "c:\\workspace\application\init-setup.ps1"]
