@@ -1,14 +1,17 @@
-# Use a Windows Server Core as base image
-FROM mcr.microsoft.com/windows/servercore:ltsc2022
+# Use Windows as base image
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
-# Metadata
-LABEL maintainer="yourname@example.com"
+# Set working directory
+WORKDIR /app 
 
-# Install chocolatey
-RUN @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+# Copy application files
+COPY . .
 
-# Install packages
-RUN choco install -y microsoft-windows-terminal
+# Install dependencies (if any)
+RUN powershell -Command Install-WindowsFeature Web-Server
 
-# Set up Windows Terminal as the default command
-CMD ["wt.exe"]
+# Expose port if required
+EXPOSE 80
+
+# Set entrypoint 
+ENTRYPOINT ["powershell.exe", "-Command", "Start-Process C:\\app\\server.exe"]
