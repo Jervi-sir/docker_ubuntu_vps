@@ -67,13 +67,15 @@ RUN chmod 600 /root/.vnc/passwd
 RUN echo "#!/bin/sh \n\
   xrdb $HOME/.Xresources \n\
   xsetroot -solid grey \n\
-  #x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" & \n\
+  vncconfig -nowin & \n\
+  #x-terminal-emulator -geometry 80x24+10+10 -ls -title \"$VNCDESKTOP Desktop\" & \n\
   #x-window-manager & \n\
   # Fix to make GNOME work \n\
   export XKL_XMODMAP_DISABLE=1 \n\
   /etc/X11/Xsession \n\
   startxfce4 & \n\
   " > /root/.vnc/xstartup
+
 RUN chmod +x /root/.vnc/xstartup
 # setup noVNC
 RUN openssl req -new -x509 -days 365 -nodes \
