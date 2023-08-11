@@ -67,8 +67,7 @@ RUN chmod 600 /root/.vnc/passwd
 RUN echo "#!/bin/sh \n\
   xrdb $HOME/.Xresources \n\
   xsetroot -solid grey \n\
-  vncconfig -nowin & \n\
-  #x-terminal-emulator -geometry 80x24+10+10 -ls -title \"$VNCDESKTOP Desktop\" & \n\
+  #x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" & \n\
   #x-window-manager & \n\
   # Fix to make GNOME work \n\
   export XKL_XMODMAP_DISABLE=1 \n\
