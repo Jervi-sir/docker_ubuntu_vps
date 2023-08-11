@@ -26,9 +26,9 @@ RUN apt install -y \
   git \
   python3-pip
 
-RUN apt install php8.1 libapache2-mod-php8.1 php8.1-mysql php8.1-curl php8.1-gd php8.1-intl php8.1-mbstring php8.1-xml php8.1-zip unzip
-RUN apt install composer
-RUN apt install postgresql postgresql-contrib php-pgsql
+#RUN apt install php8.1 libapache2-mod-php8.1 php8.1-mysql php8.1-curl php8.1-gd php8.1-intl php8.1-mbstring php8.1-xml php8.1-zip unzip
+#RUN apt install composer
+#RUN apt install postgresql postgresql-contrib php-pgsql
 
 # xfce fixes
 RUN update-alternatives --set x-terminal-emulator /usr/bin/xfce4-terminal.wrapper
