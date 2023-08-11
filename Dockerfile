@@ -44,6 +44,8 @@ ARG NOVNCPORT=9090
 ENV NOVNCPORT=${NOVNCPORT}
 EXPOSE ${NOVNCPORT}
 
+EXPOSE 8000
+
 ARG VNCPWD=jervi
 ENV VNCPWD=${VNCPWD}
 
@@ -68,7 +70,6 @@ export XKL_XMODMAP_DISABLE=1 \n\
 startxfce4 & \n\
 " > /root/.vnc/xstartup
 RUN chmod +x /root/.vnc/xstartup
-
 # setup noVNC
 RUN openssl req -new -x509 -days 365 -nodes \
   -subj "/C=US/ST=IL/L=Springfield/O=OpenSource/CN=localhost" \
