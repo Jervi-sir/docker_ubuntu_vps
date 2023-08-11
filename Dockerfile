@@ -21,14 +21,15 @@ RUN apt install -y \
   curl \
   wget \
   firefox \
-  git \
   python3 \
   git \
   python3-pip
 
-#RUN apt install php8.1 libapache2-mod-php8.1 php8.1-mysql php8.1-curl php8.1-gd php8.1-intl php8.1-mbstring php8.1-xml php8.1-zip unzip -y
-#RUN apt install composer -y
-#RUN apt install postgresql postgresql-contrib php-pgsql -y
+RUN apt install php8.1 libapache2-mod-php8.1 php8.1-mysql php8.1-curl php8.1-gd php8.1-intl php8.1-mbstring php8.1-xml php8.1-zip unzip -y
+RUN apt install composer -y
+RUN apt install postgresql postgresql-contrib php-pgsql -y
+RUN apt install openjdk-11-jdk openjdk-11-jre -y
+RUN apt install alien -y
 
 # xfce fixes
 RUN update-alternatives --set x-terminal-emulator /usr/bin/xfce4-terminal.wrapper
@@ -74,7 +75,6 @@ RUN echo "#!/bin/sh \n\
   /etc/X11/Xsession \n\
   startxfce4 & \n\
   " > /root/.vnc/xstartup
-
 RUN chmod +x /root/.vnc/xstartup
 # setup noVNC
 RUN openssl req -new -x509 -days 365 -nodes \
@@ -91,4 +91,4 @@ ENTRYPOINT [ "/bin/bash", "-c", " \
   vncserver :0 -rfbport ${VNCPORT} -depth $VNCDEPTH -localhost; \
   /usr/share/novnc/utils/launch.sh --listen $NOVNCPORT --vnc localhost:$VNCPORT \
   --cert /etc/ssl/private/novnc_combined.pem \
-" ]
+  " ]
