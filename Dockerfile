@@ -55,7 +55,7 @@ EXPOSE 8000
 ARG VNCPWD=jervi
 ENV VNCPWD=${VNCPWD}
 
-ARG VNCDISPLAY=1920x1080
+ARG VNCDISPLAY=1280x720
 ENV VNCDISPLAY=${VNCDISPLAY}
 
 ARG VNCDEPTH=16
@@ -88,7 +88,7 @@ RUN chmod 600 /etc/ssl/private/novnc_combined.pem
 ENTRYPOINT [ "/bin/bash", "-c", " \
   echo 'NoVNC Certificate Fingerprint:'; \
   openssl x509 -in /etc/ssl/certs/novnc_cert.pem -noout -fingerprint -sha256; \
-  vncserver :0 -rfbport ${VNCPORT} -depth $VNCDEPTH -localhost; \
+  vncserver :0 -rfbport ${VNCPORT} -geometry $VNCDISPLAY -depth $VNCDEPTH -localhost; \
   /usr/share/novnc/utils/launch.sh --listen $NOVNCPORT --vnc localhost:$VNCPORT \
-  --cert /etc/ssl/private/novnc_combined.pem \
-  " ]
+    --cert /etc/ssl/private/novnc_combined.pem \
+" ]
