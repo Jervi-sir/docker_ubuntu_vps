@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Update and install the necessary packages
 RUN apt update 
 RUN apt install -y --no-install-recommends 
-RUN curl -y --no-install-recommends
+RUN apt install curl -y --no-install-recommends
 RUN apt install ca-certificates  -y --no-install-recommends
 RUN apt install wget -y --no-install-recommends
 RUN apt install nano -y --no-install-recommends
