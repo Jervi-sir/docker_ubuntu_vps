@@ -1,0 +1,4 @@
+FROM theasp/novnc
+
+EXPOSE 8000 5432 3306 3000 5000
+
