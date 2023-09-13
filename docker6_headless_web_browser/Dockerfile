@@ -25,8 +25,23 @@ RUN apt install postgresql postgresql-contrib -y --no-install-recommends
 
 RUN rm -rf /var/lib/apt/lists/*
 
+#docker run -d -p 7681:7681 -p 8000:8000 -p 8010:8010 -p 8020:8020 -p 8030:8030 -p 8040:8040 headeless
 # Expose necessary ports
-EXPOSE 80 7681 8000 5432 3306
+EXPOSE 80 7681 
+#miraservices
+EXPOSE 8000 
+#aratiki
+EXPOSE 8010 
+#mihna
+EXPOSE 8020 
+#ogsport
+EXPOSE 8030 
+#octa
+EXPOSE 8040 
+#database
+EXPOSE 5432 3306 
 
 # Set the default command to run ttyd with tmux
 CMD ["ttyd", "tmux"]
+
+#https://vhwj42-7681.csb.app/
